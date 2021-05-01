@@ -1,0 +1,10 @@
+.formula{
+  position: absolute;
+  top: 10rem;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}

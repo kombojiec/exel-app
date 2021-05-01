@@ -1,0 +1,12 @@
+.table__column{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  min-width: 4rem;
+  width: 12rem;
+  border: 1px solid #eee;
+  border-top: 0;
+  border-left: 0;
+  font-size: 1.6rem;
+}

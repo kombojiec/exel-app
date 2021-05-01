@@ -1,0 +1,19 @@
+.dashboard__create{
+  width: 16rem;
+  height: 16rem;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  border: 1px solid #dadce0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+}
+
+.dashboard__create:hover{
+  color: green;
+  border: ipx solid green;
+}

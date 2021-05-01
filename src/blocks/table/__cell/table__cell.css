@@ -1,0 +1,12 @@
+.table__cell{
+  min-width: 4rem;
+  padding: 0.5rem;
+  width: 12rem;
+  height: 100%;
+  border: 1px solid #e2e3e3;
+  border-top: 0;
+  border-left: 0;
+  font-size: 1.6rem;
+  text-align: left;
+  outline: none;
+}
