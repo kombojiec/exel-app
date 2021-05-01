@@ -1,0 +1,10 @@
+.dashboard__list-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #202124;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding: 1.2rem;
+}

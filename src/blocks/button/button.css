@@ -1,0 +1,21 @@
+.button{
+  height: 2.4rem;
+  min-width: 2.4rem;
+  padding: 0.3rem 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-right: 2rem;
+  border: none;
+  box-shadow: 0 0 5px #000;
+}
+
+.button:hover{
+  box-shadow: 0 0 8px #000;
+  cursor: pointer;
+}
+
+.button:active{
+  box-shadow: 0 0 3px #000;
+  background-color: transparent;
+}

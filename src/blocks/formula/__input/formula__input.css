@@ -1,0 +1,11 @@
+.formula__input{
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  font-size: 1.5rem;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  line-height: 1.5;
+}

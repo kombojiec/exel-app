@@ -1,0 +1,13 @@
+.dashboard__item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 1.2rem 1.4rem 1.2rem 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard__item:hover{
+  background-color: #e6f4ea;
+  border-radius: 2.5rem;
+}

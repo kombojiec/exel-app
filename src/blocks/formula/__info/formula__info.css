@@ -1,0 +1,13 @@
+.formula__info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 700;
+  text-align: center;
+  border-right: 1px solid #000;
+  min-width: 3rem;
+  height: 100%;
+  padding: 1rem;
+}

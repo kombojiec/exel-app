@@ -1,0 +1,18 @@
+.header__input{
+  padding: 1rem 0.7rem;
+  color: #000;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  height: 2rem;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  outline: none;
+}
+
+.header__input:hover{
+  border: 2px solid #ccc;
+}
+
+.header__input:focus{
+  border: 2px solid #1a73e8;
+}
