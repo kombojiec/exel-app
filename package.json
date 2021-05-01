@@ -1,0 +1,41 @@
+{
+  "name": "exel-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "npx webpack serve --mode development "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kombojiec/exel-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kombojiec/exel-app/issues"
+  },
+  "homepage": "https://github.com/kombojiec/exel-app#readme",
+  "dependencies": {
+    "core-js": "^3.11.1",
+    "cssnano": "^5.0.2",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.4",
+    "favicons": "^6.2.1",
+    "favicons-webpack-plugin": "^5.0.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "postcss": "^8.2.13",
+    "postcss-loader": "^5.2.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
