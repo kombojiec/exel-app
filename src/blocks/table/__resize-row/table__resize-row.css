@@ -1,0 +1,17 @@
+.table__resize-row{
+  position: absolute;
+  left: 0;
+  right: 0px;
+  bottom: 0;
+  height: 3px;
+}
+
+.table__resize-row:hover{
+  background-color: #ccc;
+  cursor: n-resize;
+}
+
+.table__resize-row:active{
+  background-color: #ccc;
+  cursor: n-resize;
+}

@@ -1,0 +1,18 @@
+.table__resize-col{
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 3px;
+  
+}
+
+.table__resize-col:hover{
+  background-color: #ccc;
+  cursor: ew-resize;
+}
+
+.table__resize-col:active{
+  background-color: #ccc;
+  cursor: ew-resize;
+}

@@ -42,6 +42,8 @@
 @import url(./blocks/table/__row-info/table__row-info.css);
 @import url(./blocks/table/__row/table__row.css);
 @import url(./blocks/table/__cell/table__cell.css);
+@import url(./blocks/table/__resize-col/table__resize-col.css);
+@import url(./blocks/table/__resize-row/table__resize-row.css);
 
 /* ============= dashboard ================= */
 @import url(./blocks/dashboard/dashboard.css);
