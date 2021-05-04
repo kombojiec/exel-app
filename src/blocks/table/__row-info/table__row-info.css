@@ -9,6 +9,7 @@
   font-size: 1.6rem;
   border-top: 0;
   border-right: 0;
+  position: relative;
 }
 
 .table__row-info:first-child{

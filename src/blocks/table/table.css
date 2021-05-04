@@ -3,6 +3,6 @@
   left: 0;
   right: 0;
   top: 13rem;
-  overflow-x: auto;
+  overflow-x: inherit;
   padding-bottom: 0.2rem;
 }

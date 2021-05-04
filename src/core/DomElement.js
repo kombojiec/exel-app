@@ -39,7 +39,6 @@ class DomElement{
 }
 
 
-
 export function dom(selector){
   return new DomElement(selector);
 }
