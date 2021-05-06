@@ -1,8 +1,9 @@
-export function resizeHandler(downEvent, findAll){
+
+export function resizeHandler(downEvent, root){
   const parent = downEvent.target.closest('[data-parent="parent"]');
   const coords = parent.getBoundingClientRect();
   let target = downEvent.target.dataset.resize == 'col'? 'col': 'row';
-  const cells = findAll(`[data-${target}="${parent.dataset[target]}"]`) 
+  const cells = root.findAll(`[data-${target}="${parent.dataset[target]}"]`) 
   let position;
   let spread;
 
@@ -27,4 +28,38 @@ export function resizeHandler(downEvent, findAll){
       }):
       parent.style.height = spread + `px`;
   }
+}
+
+export function keyHandler(key, data, lastRow, lastColumn){
+  let {row, col} = data;
+  col = col.charCodeAt(col)
+  switch(key){
+    case 'Tab':
+    case 'ArrowRight':
+      if(col == lastColumn.charCodeAt(lastColumn)){
+        break
+      };
+      ++col;
+      break;
+    case 'Enter':
+    case 'ArrowDown':
+      if(row == lastRow){
+        break;
+      }
+      ++row;
+      break;
+    case 'ArrowLeft':
+      if(col == 65){
+        break
+      };
+      --col;
+      break;
+    case 'ArrowUp':
+      if(row == 1){
+        break
+      }
+      --row;
+      break;
+  }
+  return `[data-id="${row}${String.fromCharCode(col)}"]`;
 }
