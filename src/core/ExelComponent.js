@@ -6,12 +6,18 @@ export class ExelComponent extends DomListener{
   constructor(root, options = {}){
     super(root, options)
     this.prepare();
-    this.observer = options.observer;
+    this.observer = options.options.observer;
     this._unsubscribes = [];
+    this.store = options.options.store;
+    this.subscribe = options.subscribe || [];
   }
 
-  prepare(){
-    
+  prepare(){}
+
+  storeChanged(){}
+
+  isWatching(key){
+    return this.subscribe.includes(key);
   }
 
   emit(event, ...data){
@@ -21,6 +27,10 @@ export class ExelComponent extends DomListener{
   on(event, callback){
     const unsubscribe = this.observer.subscribe(event, callback);
     this._unsubscribes.push(unsubscribe);
+  }
+
+  dispatch(action){
+    this.storeSubscribe = this.store.dispatch(action);
   }
 
   // Возврат HTML структуры компонента

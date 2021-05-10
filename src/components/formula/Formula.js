@@ -9,21 +9,19 @@ export class Formula extends ExelComponent{
     super(root, {
       name: 'formula',
       listeners: ['input', 'keydown'],
-      observer: options.observer
+      subscribe: ['currentText'],
+      options
     });
   }  
   
   init(){
-    this._input = this._root._element.querySelector("#formula-input")
+    this._input = this._root._element.querySelector("#formula-input");
     super.init();
     this.on('cell:click', data => {
       this._input.textContent = data;
     })
     this.on('cell:keydown', data => {
       this._input.textContent = data.textContent();
-    })
-    this.on('cell:input', data => {
-      this._input.textContent = data;
     })
   }
 
@@ -44,6 +42,10 @@ export class Formula extends ExelComponent{
       event.preventDefault();
       this.emit('formula:enter', '');
     }
+  }
+
+  storeChanged(changes){
+    this._input.textContent =  changes.currentText;
   }
 
 }

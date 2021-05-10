@@ -8,7 +8,7 @@ export class Header extends ExelComponent{
     super(root, {
       name: 'Header',
       listeners: [],
-      observer: options.observer
+      options
     })
   }
 

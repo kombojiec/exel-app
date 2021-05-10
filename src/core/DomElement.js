@@ -50,6 +50,19 @@ class DomElement{
     return this;
   }
 
+  css(styles = {}){
+    Object.keys(styles).forEach(key => {
+      this._element.style[key] = styles[key];
+    })
+  }
+
+  getStyles(styles = []){
+    return styles.reduce((res, style) => {
+      res[style] = this._element.style[style];
+      return res;
+    }, {});
+  }
+
   focus(){
     this._element.focus();
     return this;

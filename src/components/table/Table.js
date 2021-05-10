@@ -1,8 +1,10 @@
 import { ExelComponent } from '../../core/ExelComponent';
 import { tableTemplate } from './tableTemplate';
 import {dom} from '../../core/DomElement';
-import {resizeHandler, keyHandler} from './tableHandlers';
+import {resizeHandler, keyHandler, setTableSize, setTableData} from './tableHandlers';
 import { TableSelection } from './TableSelection';
+import * as actions from '../../redux/actions';
+import { initialStyles } from '../../scripts/constants';
 
 export class Table extends ExelComponent{
   static className = 'table';
@@ -11,9 +13,10 @@ export class Table extends ExelComponent{
     super(root, {
       name: 'Table',
       listeners: ['mousedown', 'click', 'keydown', 'input'],
-      observer: options.observer
+      options
     })
-    this._root = root;    
+    this._root = root;
+    this._tableState = options.tableState
   }
 
   prepare(){
@@ -26,11 +29,27 @@ export class Table extends ExelComponent{
     this.selection.select(cell);
     this.on('formula:input', data => {
       this.selection.current.textContent(data)
+      this.dispatch(actions.changeTextAction({
+        value: data,
+        id:this.selection.current.id
+      }))
+
     })
     this.on('formula:enter', () => {
       this.selection.current.focus();
     })
     this.emit('cell:click', this.selection.current.textContent())
+    setTableSize(this.store.getState().tableState, this._root._element);
+    setTableData(this.store.getState().tableText, this._root._element);
+
+    this.on('toolbar:applystyle', style => {
+      this.selection.applyStyle(style);
+      this.dispatch((actions.applyStyleAction({
+        style,
+        ids: this.selection.selectedIds
+      })))
+    })
+
   }
   
   toHTML(){
@@ -38,13 +57,21 @@ export class Table extends ExelComponent{
   }
 
   onInput(event){
-    this.emit('cell:input', event.target.textContent)
+    this.dispatch(actions.changeTextAction({
+      value: event.target.textContent,
+      id:dom(event.target).id
+    }))    
+  }
+
+  resizeTable(event){
+    resizeHandler(event, this._root)
+    .then(data => this.dispatch(actions.tableResizeAction(data)))    
   }
 
   onMousedown(downEvent){
     const target = downEvent.target;
     if(target.dataset.resize){
-      resizeHandler(downEvent, this._root);
+      this.resizeTable(downEvent)      
     }
 
     if(target.dataset.id){
@@ -57,9 +84,12 @@ export class Table extends ExelComponent{
   }
 
   onClick(event){
-    if(event.target.dataset.id){
+    const target = event.target
+    if(target.dataset.id){
       this.emit('cell:click', event.target.textContent);
-
+      const styles = (dom(target).getStyles(Object.keys(initialStyles)));
+      console.log('styles for dispatch: ', styles)
+      this.dispatch(actions.changeStylesAction(styles))
     }
   }
 

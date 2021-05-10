@@ -1,33 +1,50 @@
 
 export function resizeHandler(downEvent, root){
-  const parent = downEvent.target.closest('[data-parent="parent"]');
-  const coords = parent.getBoundingClientRect();
-  let target = downEvent.target.dataset.resize == 'col'? 'col': 'row';
-  const cells = root.findAll(`[data-${target}="${parent.dataset[target]}"]`) 
-  let position;
-  let spread;
+  return new Promise(resolve => {
 
-  if(target == 'col'){
-    downEvent.target.style.height = 100 + 'vh';
-  }else{
-    downEvent.target.style.width = 100 + 'vw';
-  }
-  
-  document.onmousemove = moveEvent => {
-    position = target == 'col'? moveEvent.clientX: moveEvent.clientY;
-    spread =  target == 'col'? position - coords.x: position - coords.y;
-    target == 'col'? parent.style.width = spread + 'px': parent.style.height = spread + 'px';
+    const parent = downEvent.target.closest('[data-parent="parent"]');
+    const coords = parent.getBoundingClientRect();
+    let target = downEvent.target.dataset.resize == 'col'? 'col': 'row';
+    const cells = root.findAll(`[data-${target}="${parent.dataset[target]}"]`) 
+    let position;
+    let spread;
     
-  }
+    if(target == 'col'){
+      downEvent.target.style.height = 100 + 'vh';
+    }else{
+      downEvent.target.style.width = 100 + 'vw';
+    }
+    
+    document.onmousemove = moveEvent => {
+      position = target == 'col'? moveEvent.clientX: moveEvent.clientY;
+      spread =  target == 'col'? position - coords.x: position - coords.y;
+      target == 'col'? parent.style.width = spread + 'px': parent.style.height = spread + 'px';
+      
+    }
+    
+    document.onmouseup = upEvent => {
+      document.onmousemove = null;
+      document.onmouseup = null;
 
-  document.onmouseup = upEvent => {
-    document.onmousemove = null;
-    target == 'col'?
-      cells.forEach(cell => {
-        cell.style.width = spread + `px`;
-      }):
-      parent.style.height = spread + `px`;
-  }
+      if(target == 'col'){
+        cells.forEach(cell => {
+          cell.style.width = spread + `px`;
+        })
+        resolve({
+          id: parent.dataset.col,
+          value: ~~spread,
+        })
+      }else{
+        parent.style.height = spread + `px`;
+        resolve({
+          id: parent.dataset.row,
+          value: ~~spread,
+        })
+      }
+
+    }
+
+  })
 }
 
 export function keyHandler(key, data, lastRow, lastColumn){
@@ -63,3 +80,23 @@ export function keyHandler(key, data, lastRow, lastColumn){
   }
   return `[data-id="${row}${String.fromCharCode(col)}"]`;
 }
+
+export function setTableSize(data, table){
+  Object.keys(data).forEach(key => {
+    if(parseInt(key)){
+      const cell = table.querySelector(`[data-row="${key}"]`);
+      cell.style.height = data[key] + 'px';
+    }
+    if(!parseInt(key)){
+      const cells = table.querySelectorAll(`[data-col="${key}"]`);
+      cells.forEach(cell => cell.style.width = data[key] + 'px');
+    }
+  })
+}
+
+export function setTableData(data, table){
+  Object.keys(data).forEach(key => {
+    table.querySelector(`[data-id="${key}"]`).textContent = data[key];
+  })
+}
+

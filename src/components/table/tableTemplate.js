@@ -1,3 +1,6 @@
+import { initialStyles } from "../../scripts/constants"
+import { toInlineStyles } from "../../scripts/utiles"
+
 const CODES = {
   A: 65,
   Z: 90
@@ -29,8 +32,9 @@ function createChar(start, index){
 }
 
 function createCell(index, alpha){
+  const styles = toInlineStyles(initialStyles)
   return `
-    <div class="table__cell" contenteditable='true' data-col="${alpha}" data-row="${index}" data-id="${index}${alpha}"></div> 
+    <div class="table__cell" contenteditable='true' style='${styles}' data-col="${alpha}" data-row="${index}" data-id="${index}${alpha}"></div> 
   `
 }
 
